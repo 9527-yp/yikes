@@ -22,6 +22,14 @@
 			<view class="introduce">夜，借结束了一天的喧嚣后安静了下来，伴随着远处路灯那微弱的光。风，毫无预兆的席卷整片的旷野，撩动人的思绪万千。</view>
 			<view class="add-friend">加为好友</view>
 		</view>
+		<view class="add-friend">
+			<view class="name">左左左表妹</view>
+			<textarea :value="myname + '，请求加为好友~'" maxlength="120" class="add-main"></textarea>
+		</view>
+		<view class="add-btn">
+			<view class="close">取消</view>
+			<view class="send">发送</view>
+		</view>
 	</view>
 </template>
 
@@ -30,6 +38,7 @@
 		data() {
 			return {
 				sexbg:'#FF5D5B',
+				myname:'春雨借结束了一天的喧嚣后安静了下来，伴随着远处路灯那微弱的光。风，毫无预兆的席卷整片的旷野，撩动人的思绪万千',
 			}
 		},
 		methods: {
@@ -88,6 +97,7 @@
 				height:400rpx;
 				border-radius:48rpx;
 				border: 6rpx solid #FFFFFF;
+				z-index: 13;
 				.img{
 					width:100%;
 					height:100%;
@@ -135,6 +145,57 @@
 				margin: 0 auto;
 				text-align:center;
 				line-height:80rpx;
+			}
+		}
+		.add-friend{
+			width:100%;
+			height: 952rpx;
+			background: #FFFFFF;
+			box-sizing:border-box;
+			padding: 0 56rpx;
+			position:fixed;
+			bottom:0;
+			left:0;
+			.name{
+				color: #272832;
+				padding-top:168rpx;
+				font-size: 52rpx;
+			}
+			.add-main{
+				// width: 100%;
+				height: 320rpx;
+				background: #F3F4F6;
+				border-radius: 20px;
+				padding: 18rpx 20rpx;
+				font-size:32rpx;
+				color: #272832;
+			}
+		}
+		.add-btn{
+			position:fixed;
+			bottom:50rpx;
+			width:100%;
+			box-sizing:border-box;
+			height:80rpx;
+			font-size: 32rpx;
+			padding: 0 34rpx;
+			.close{
+				width:172rpx;
+				height:80rpx;
+				float:left;
+				text-align:center;
+				line-height:80rpx;
+				background: rgba(39,40,50,0.10);
+				border-radius: 10px;
+			}
+			.send{
+				width:480rpx;
+				height:80rpx;
+				float:right;
+				text-align:center;
+				line-height:80rpx;
+				background: #FFE431;
+				border-radius: 10px;
 			}
 		}
 	}
