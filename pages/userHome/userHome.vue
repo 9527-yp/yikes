@@ -15,6 +15,7 @@
 		<view class="main">
 			<view class="user-img">
 				<img class="img" src="../../static/img/baby01.jpg" mode="aspectFill" alt="">
+				<view class="sexbg" :style="{background:sexbg}"><img class="sex-img" src="../../static/images/girl.png" alt=""></view>
 			</view>
 			<view class="title">左左左表妹</view>
 			<view class="nickname">昵称：很好搭档</view>
@@ -28,7 +29,7 @@
 	export default {
 		data() {
 			return {
-				
+				sexbg:'#FF5D5B',
 			}
 		},
 		methods: {
@@ -82,15 +83,31 @@
 			flex-direction:column;
 			align-items:center;
 			.user-img{
+				position:relative;
 				width:400rpx;
 				height:400rpx;
 				border-radius:48rpx;
-				border: 6px solid #FFFFFF;
-				img{
+				border: 6rpx solid #FFFFFF;
+				.img{
 					width:100%;
 					height:100%;
 					border-radius:48rpx;
 					
+				}
+				.sexbg{
+					width:64rpx;
+					height:64rpx;
+					border-radius:50%;
+					position:absolute;
+					bottom:16rpx;
+					right:16rpx;
+					display:flex;
+					align-items:center;
+					justify-content: center;
+					.sex-img{
+						width:32rpx;
+						height:32rpx;
+					}
 				}
 			}
 			.title{
