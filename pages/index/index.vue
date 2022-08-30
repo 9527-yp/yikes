@@ -2,9 +2,9 @@
 	<view class="content">
 		<!-- 头部 -->
 		<view class="top-bar">
-			<view class="top-bar-left">
+			<navigator url="../userHome/userHome?id=aaa" hover-class="none" class="top-bar-left">
 				<img src="../../static/img/baby01.jpg" alt="">
-			</view>
+			</navigator>
 			<view class="top-bar-center">
 				<img src="../../static/images/index/logo.png" class="logo" alt="">
 			</view>

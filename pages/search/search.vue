@@ -13,7 +13,9 @@
 				<view class="title">用户</view>
 				<view class="list" v-for="(item,index) in userarr" :key="item.id">
 					<view class="list-left">
-						<img class="list-img" :src="item.imgUrl" alt="">
+						<navigator url="../userHome/userHome?id=aaa" hover-class="none">
+							<img class="list-img" :src="item.imgUrl" alt="">
+						</navigator>
 						<view class="user-name" v-html="item.name"></view>
 					</view>
 					<view class="list-right" :class="item.tip == 1 ? 'message' : 'friend'">{{ item.tip == 1 ? '发消息':'加好友'}}</view>
