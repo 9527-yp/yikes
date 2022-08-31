@@ -44,7 +44,7 @@
 				animationData1:{},   // 动画
 				animationData2:{},   // 动画
 				animationData3:{},   // 动画
-				isAnimat:false,
+				isAnimat:false, // 弹框的显示隐藏判断
 				myname:'春雨借结束了一天的喧嚣后安静了下来，伴随着远处路灯那微弱的光。风，毫无预兆的席卷整片的旷野，撩动人的思绪万千',
 			}
 		},

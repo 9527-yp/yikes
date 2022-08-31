@@ -17,7 +17,7 @@
 					<view class="header-left">
 						<view class="text">头像</view>
 						<view class="head-img" @click="selectImg">
-							<image
+							<image-cropper 
 								id="image-cropper" 
 								:zoom="1" 
 								:angle="0"
@@ -32,25 +32,25 @@
 					</view>
 					<view class="header-right"></view>
 				</view>
-				<view class="header-list signature">
+				<view class="header-list signature" @tap="getValue('签名')">
 					<view class="header-left">
 						<view class="text">签名</view>
-						<view class="signature-text">春雨借结束了一天的喧嚣后安静了下来，伴随着远处路灯那微弱的光。风</view>
+						<view class="signature-text">{{ dataArr.signature }}</view>
 					</view>
 					<view class="header-right"></view>
 				</view>
 				<view class="header-list registered">
 					<view class="header-left">
 						<view class="text">注册</view>
-						<view class="signature-text">2022-12-23 14:23:56</view>
+						<view class="signature-text">{{ dataArr.registered }}</view>
 					</view>
 				</view>
 			</view>
 			<view class="conent information">
-				<view class="header-list registered">
+				<view class="header-list registered" @tap="getValue('昵称')">
 					<view class="header-left">
 						<view class="text">昵称</view>
-						<view class="signature-text">左左左表妹</view>
+						<view class="signature-text">{{ dataArr.nickname }}</view>
 					</view>
 					<view class="header-right"></view>
 				</view>
@@ -76,17 +76,17 @@
 					</view>
 					<view class="header-right"></view>
 				</view>
-				<view class="header-list registered">
+				<view class="header-list registered" @tap="getValue('电话')">
 					<view class="header-left">
 						<view class="text">电话</view>
-						<view class="signature-text">12345678912</view>
+						<view class="signature-text">{{ dataArr.phone }}</view>
 					</view>
 					<view class="header-right"></view>
 				</view>
-				<view class="header-list registered">
+				<view class="header-list registered" @tap="getValue('邮箱')">
 					<view class="header-left">
 						<view class="text">邮箱</view>
-						<view class="signature-text">1234567891@qq.com</view>
+						<view class="signature-text">{{ dataArr.email }}</view>
 					</view>
 					<view class="header-right"></view>
 				</view>
@@ -103,6 +103,17 @@
 		</view>
 		<view class="exit">
 			<view>退出应用</view>
+		</view>
+		<view class="modify" :animation="animationData">
+			<view class="modify-header">
+				<view class="close" @tap="modifyAnimation">取消</view>
+				<view class="title">{{ title }}</view>
+				<view class="define" @tap="confirm">确认</view>
+			</view>
+			<view class="modify-content">
+				<input type="text" class="modify-input" v-model="psw" placeholder="请输入原密码"/>
+				<textarea v-model="value" class="modfy-textarea" name="" placeholder="请输入需要填写的信息"></textarea>
+			</view>
 		</view>
 	</view>
 </template>
@@ -122,6 +133,19 @@
 				index:0,
 				date: currentDate,
 				imgDataUrl: "../../static/img/baby01.jpg",
+				value:'', // 修改的值
+				psw:'', // 修改的密码
+				animationData:{},   // 动画
+				isAnimat:false, // 弹框的显示隐藏判断
+				dataArr:{
+					signature:'结束了一天的喧嚣后安静了下来', // 签名
+					registered:'2022-12-23 14:12:28', // 注册时间
+					nickname:'左左左表妹', // 昵称
+					phone:'12345678912', // 电话
+					email:'1234567891@qq.com', // 邮箱
+					password:'123456' // 密码
+				},
+				title:'',
 			}
 		},
 		computed: {
@@ -147,6 +171,7 @@
 			bindDateChange: function(e) {
 				this.date = e.detail.value
 			},
+			
 			getDate(type) {
 				const date = new Date();
 				let year = date.getFullYear();
@@ -161,6 +186,48 @@
 				month = month > 9 ? month : '0' + month;
 				day = day > 9 ? day : '0' + day;
 				return `${year}-${month}-${day}`;
+			},
+			// 修改调用方法
+			getValue: function(e) {
+				this.title = e
+				if(this.title == '签名'){
+					this.value = this.dataArr.signature
+				}else if(this.title == '昵称'){
+					this.value = this.dataArr.nickname
+				}else if(this.title == '电话'){
+					this.value = this.dataArr.phone
+				}else if(this.title == '邮箱'){
+					this.value = this.dataArr.email
+				}
+				this.modifyAnimation()
+			},
+			// 确认修改
+			confirm: function() {
+				if(this.title == '签名'){
+					this.dataArr.signature = this.value
+				}else if(this.title == '昵称'){
+					this.dataArr.nickname = this.value
+				}else if(this.title == '电话'){
+					this.dataArr.phone = this.value
+				}else if(this.title == '邮箱'){
+					this.dataArr.email = this.value
+				}
+				this.modifyAnimation()
+			},
+			// 修改项动画
+			modifyAnimation: function() {
+				this.isAnimat = !this.isAnimat
+				var animation = uni.createAnimation({
+					duration: 400,
+					timingFunction: 'ease',
+				})
+				
+				if(this.isAnimat){
+					animation.top('0').step()
+				}else{
+					animation.top("100%").step()
+				}
+				this.animationData = animation.export()
 			},
 			selectImg() {
 				uni.chooseImage({
@@ -183,7 +250,8 @@
 			},
 			cropped(imagePath, imageInfo) {
 				console.log(imagePath, imageInfo)
-			}
+			},
+			
 		}
 	}
 </script>
@@ -290,4 +358,56 @@
 		margin-top:160rpx;
 		padding-bottom:var(--status-bar-height);
 	}
+	.modify{
+		width:100%;
+		height:100%;
+		position:fixed;
+		top:100%;
+		left:0;
+		background:#fff;
+		z-index: 1000;
+		.modify-header{
+			width:100%;
+			padding: 0 32rpx;
+			box-sizing:border-box;
+			height:88rpx;
+			font-size:32rpx;
+			color: #272832;
+			box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
+			display: flex;
+			align-items:center;
+			justify-content: space-between;
+			.title{
+				font-size: 40rpx;
+			}
+			.define{
+				color: #4AAAFF;
+			}
+		}
+		.modify-content{
+			.modfy-textarea{
+				width: 85%;
+				height: 386rpx;
+				background: #F3F4F6;
+				border-radius: 20rpx;
+				font-size:32rpx;
+				color: #272832;
+				margin: 0 auto;
+				margin-top:34rpx;
+				padding: 16rpx 22rpx;
+			}
+			.modify-input{
+				width: 85%;
+				height:88rpx;
+				background: #F3F4F6;
+				border-radius: 20rpx;
+				font-size:32rpx;
+				color: #272832;
+				margin: 0 auto;
+				margin-top:34rpx;
+				padding: 0 22rpx;
+			}
+		}
+	}
+
 </style>
