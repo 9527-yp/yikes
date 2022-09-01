@@ -113,5 +113,84 @@ export default {
 			},
 		]
 		return friends
+	},
+	
+	// 聊天信息
+	message: function() {
+		let msgs = [
+			{
+				id:'a', // 用户id
+				imgUrl:'baby01.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000,  // 发送时间
+				tip:0,
+			},
+			{
+				id:'a', // 用户id
+				imgUrl:'baby01.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*16,  // 发送时间
+				tip:1,
+			},
+			{
+				id:'b', // 用户id
+				imgUrl:'baby02.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60,  // 发送时间
+				tip:2,
+			},
+			{
+				id:'a', // 用户id
+				imgUrl:'baby01.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*35,  // 发送时间
+				tip:3,
+			},
+			{
+				id:'b', // 用户id
+				imgUrl:'baby02.jpg',
+				message:'baby03.jpg',
+				types:'1', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*45,  // 发送时间
+				tip:4,
+			},
+			{
+				id:'a', // 用户id
+				imgUrl:'baby01.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*55,  // 发送时间
+				tip:5,
+			},
+			{
+				id:'b', // 用户id
+				imgUrl:'baby02.jpg',
+				message:'对方天热提到过的',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*35*24,  // 发送时间
+				tip:6,
+			},
+			{
+				id:'a', // 用户id
+				imgUrl:'baby02.jpg',
+				message:'对方天热提',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*38*24,  // 发送时间
+				tip:7,
+			},
+			{
+				id:'a', // 用户id
+				imgUrl:'baby02.jpg',
+				message:'对方天热提到过的法国人黄金股原图太大',
+				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				time: new Date()-1000*60*55*24,  // 发送时间
+				tip:8,
+			},
+		]
+		return msgs
 	}
 }

@@ -50,6 +50,16 @@
 				"navigationBarTitleText": "图片裁剪"
 			}	
 		}
+        ,{
+            "path" : "pages/chatroom/chatroom",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+				"navigationStyle": "custom",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
