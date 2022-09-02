@@ -161,8 +161,8 @@ export default {
 			{
 				id:'a', // 用户id
 				imgUrl:'baby01.jpg',
-				message:'对方天热提到过的法国人黄金股原图太大',
-				types:'0', // 图片类型 （0 文字 1 图片链接 2 音频链接
+				message:'baby05.jpg',
+				types:'1', // 图片类型 （0 文字 1 图片链接 2 音频链接
 				time: new Date()-1000*60*55,  // 发送时间
 				tip:5,
 			},

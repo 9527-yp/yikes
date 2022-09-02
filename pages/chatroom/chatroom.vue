@@ -21,7 +21,7 @@
 							<view class="msg-text">{{ item.message}}</view>
 						</view>
 						<view class="massage" v-if="item.types == 1">
-							<img class="msg-img" :src="item.message" mode="widthFix" alt="">
+							<img class="msg-img" :src="item.message" mode="widthFix" @tap="getLookImg(item.message)" alt="">
 						</view>
 					</view>
 					<view class="msg-m msg-right"  v-if="item.id != 'a'">
@@ -30,7 +30,7 @@
 							<view class="msg-text">{{ item.message}}</view>
 						</view>
 						<view class="massage" v-if="item.types == 1">
-							<img class="msg-img" :src="item.message" mode="widthFix" alt="">
+							<img class="msg-img" :src="item.message" mode="widthFix" @tap="getLookImg(item.message)" alt="">
 						</view>
 					</view>
 				</view>
@@ -54,13 +54,15 @@
 	export default {
 		data() {
 			return {
-				msgs:[]
+				msgs:[],
+				imgMsg:[],
 			}
 		},
 		onLoad(){
 			this.getmsgs()
 		},
 		methods: {
+			// 获取数据
 			getmsgs: function() {
 				let msg = datas.message()
 				for(let i = 0 ; i < msg.length; i++){
@@ -68,14 +70,32 @@
 					// 补充图片地址
 					if(msg[i].types == 1){
 						msg[i].message = '../../static/img/' + msg[i].message
+						this.imgMsg.unshift(msg[i].message)
 					}
 					this.msgs.unshift(msg[i])
 				}
 				console.log(msg)
 			},
+			// 时间转换
 			changeTime: function(date) {
 				return myfun.dateTime(date)
 			},
+			// 预览图片
+			getLookImg: function(e){
+				uni.previewImage({
+					current:e,
+					urls: this.imgMsg,
+					longPressActions: {
+						itemList: ['发送给朋友', '保存图片', '收藏'],
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
@@ -148,7 +168,7 @@
 				.massage{
 					.msg-text{
 						margin-left:20rpx;
-						background: rgba(255,228,49,.8);
+						background: rgba(255,255,255,.8);
 						border-radius: 20rpx 0rpx 20rpx 20rpx;
 					}
 				}
