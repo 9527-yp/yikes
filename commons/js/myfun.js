@@ -44,7 +44,7 @@ export default {
 	},
 	
 	// 聊天页面时间转换
-	dateTime(e){
+	chatTime(e){
 		let old = new Date(e);
 		let now = new Date();
 		// 获取old具体时间
@@ -82,8 +82,37 @@ export default {
 				om = "0" + om
 			}
 			return '昨天' + oh + ":" + om
+		}else if( oY == nY){
+			// 今年
+			if(oh < 10){
+				oh = "0" + oh
+			}
+			if(om < 10){
+				om = "0" + om
+			}
+			return oM + '月' + oD + '日'  + oh + ':' + om
+		}
+		else{
+			// 大于今年
+			if(oh < 10){
+				oh = "0" + oh
+			}
+			if(om < 10){
+				om = "0" + om
+			}
+			return oY + '年' + oM + '月' + oD + '日'  + oh + ':' + om
+		}
+	},
+	// 间隔时间差
+	spaceTime(old,now){
+		old = new Date(old);
+		now = new Date(now);
+		var told = old.getTime()
+		var tnow = now.getTime()
+		if(told > (tnow + 1000*60*5)){
+			return now 
 		}else{
-			return  oY + '/' + om + '/' + oD
+			return ''
 		}
 	}
 }
